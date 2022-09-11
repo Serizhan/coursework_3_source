@@ -19,6 +19,7 @@ class BaseConfig:
 
     PWD_HASH_SALT = base64.b64decode("salt")
     PWD_HASH_ITERATIONS = 100_000
+    ALGORITHM = "HS256"
 
     RESTX_JSON = {
         'ensure_ascii': False,
@@ -42,6 +43,7 @@ class ProductionConfig(BaseConfig):
 
 
 class ConfigFactory:
+    os.environ['FLASK_ENV'] = 'development'
     flask_env = os.getenv('FLASK_ENV')
 
     @classmethod
